@@ -494,6 +494,7 @@ img {
   letter-spacing: -0.02em;
   margin-bottom: var(--space-lg);
   color: var(--ink);
+  text-align: center;
 }
 
 .hero-title em {
@@ -507,6 +508,9 @@ img {
   line-height: 1.7;
   max-width: 520px;
   margin-bottom: var(--space-xl);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-actions {
@@ -514,6 +518,7 @@ img {
   gap: var(--space-sm);
   margin-bottom: var(--space-2xl);
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .hero-points {
