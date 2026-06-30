@@ -1455,7 +1455,8 @@
       path: 'assets/global-knowledge-lottie/animations/scene-1.json',
       rendererSettings: {
         preserveAspectRatio: 'xMidYMid meet',
-        progressiveLoad: true
+        progressiveLoad: true,
+        hideOnTransparent: false
       }
     });
 
