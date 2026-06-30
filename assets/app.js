@@ -505,10 +505,18 @@
 
     if (!overlay || !panel) return;
 
-    const pageTemplates = {
+    function pt(key, fallback) {
+      if (typeof i18next !== 'undefined') {
+        return i18next.t('docs.preview.' + key, { fallbackValue: fallback });
+      }
+      return fallback;
+    }
+
+    function getPageTemplates() {
+      return {
       'mobile-feed': {
         title: 'Daily Papers',
-        subtitle: '首页信息流 · 移动端',
+        subtitle: pt('mobileFeedSubtitle', '首页信息流 · 移动端'),
         device: 'mobile',
         hasNotch: true,
         hasNavBar: true,
@@ -516,7 +524,7 @@
         content: `
           <div class="mini-app-header">
             <div>
-              <h4>今日简报</h4>
+              <h4>${pt('todayBriefing', '今日简报')}</h4>
               <div class="date-text">October 24, 2026</div>
             </div>
             <div class="mini-app-header-actions">
@@ -529,7 +537,7 @@
             <div class="mini-paper-body">
               <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>Nature · Medicine</div>
               <div class="mini-paper-title">A safer gene switch for cell therapies</div>
-              <div class="mini-paper-desc">精确控制治疗开关，提升临床安全性。</div>
+              <div class="mini-paper-desc">${pt('paperDesc1', '精确控制治疗开关，提升临床安全性。')}</div>
             </div>
             <div class="mini-bookmark"><i class="ph ph-bookmark-simple"></i></div>
           </div>
@@ -538,7 +546,7 @@
             <div class="mini-paper-body">
               <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>ArXiv AI</div>
               <div class="mini-paper-title">A new scaling law for reasoning in large language models</div>
-              <div class="mini-paper-desc">模型推理能力的提升规律变得可估。</div>
+              <div class="mini-paper-desc">${pt('paperDesc2', '模型推理能力的提升规律变得可估。')}</div>
             </div>
             <div class="mini-bookmark"><i class="ph ph-bookmark-simple"></i></div>
           </div>
@@ -547,7 +555,7 @@
             <div class="mini-paper-body">
               <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>Science · Earth</div>
               <div class="mini-paper-title">Global methane emissions are higher and rising faster</div>
-              <div class="mini-paper-desc">卫星观测揭示甲烷排放增长超预期。</div>
+              <div class="mini-paper-desc">${pt('paperDesc3', '卫星观测揭示甲烷排放增长超预期。')}</div>
             </div>
             <div class="mini-bookmark"><i class="ph ph-bookmark-simple"></i></div>
           </div>
@@ -556,7 +564,7 @@
             <div class="mini-paper-body">
               <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>Cell</div>
               <div class="mini-paper-title">Reversing epigenetic aging in human cells</div>
-              <div class="mini-paper-desc">重编程里程碑：逆转衰老时钟。</div>
+              <div class="mini-paper-desc">${pt('paperDesc4', '重编程里程碑：逆转衰老时钟。')}</div>
             </div>
             <div class="mini-bookmark"><i class="ph ph-bookmark-simple"></i></div>
           </div>
@@ -564,7 +572,7 @@
       },
       'mobile-reader': {
         title: 'Paper Reader',
-        subtitle: '论文详情页 · 移动端',
+        subtitle: pt('mobileReaderSubtitle', '论文详情页 · 移动端'),
         device: 'mobile',
         hasNotch: true,
         hasNavBar: false,
@@ -584,15 +592,15 @@
           </div>
           <div class="mini-key-finding">
             <div class="mini-key-finding-label"><i class="ph-fill ph-key"></i> Key Finding</div>
-            <p>大型语言模型的推理能力会随着更多计算和更高质量数据增长，增强规律是可预测的。</p>
+            <p>${pt('mobileReaderKeyFinding', '大型语言模型的推理能力会随着更多计算和更高质量数据增长，增强规律是可预测的。')}</p>
           </div>
           <div class="mini-plain-english">
             <strong>In Plain English</strong>
             <ul>
-              <li>更大的模型推理能力更好。</li>
-              <li>关系是可预测的。</li>
-              <li>数据质量很重要。高质量数据推理提升更多。</li>
-              <li>对规划训练预算和评估里程碑有实际意义。</li>
+              <li>${pt('mobileReaderPlain1', '更大的模型推理能力更好。')}</li>
+              <li>${pt('mobileReaderPlain2', '关系是可预测的。')}</li>
+              <li>${pt('mobileReaderPlain3', '数据质量很重要。高质量数据推理提升更多。')}</li>
+              <li>${pt('mobileReaderPlain4', '对规划训练预算和评估里程碑有实际意义。')}</li>
             </ul>
           </div>
           <div class="mini-cta-row">
@@ -603,7 +611,7 @@
       },
       'mobile-dashboard': {
         title: 'Data Dashboard',
-        subtitle: '数据面板 · 移动端',
+        subtitle: pt('mobileDashboardSubtitle', '数据面板 · 移动端'),
         device: 'mobile',
         hasNotch: true,
         hasNavBar: true,
@@ -611,8 +619,8 @@
         content: `
           <div class="mini-app-header">
             <div>
-              <h4>数据面板</h4>
-              <div class="date-text">总览</div>
+              <h4>${pt('mobileDashboardTitle', '数据面板')}</h4>
+              <div class="date-text">${pt('mobileDashboardOverview', '总览')}</div>
             </div>
             <div class="mini-app-header-actions">
               <div class="mini-icon-btn"><i class="ph ph-arrows-clockwise"></i></div>
@@ -620,59 +628,59 @@
           </div>
           <div style="padding: 0 var(--space-md); margin-bottom: var(--space-xs);">
             <select style="width: 100%; height: 32px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); font-size: 11px; padding: 0 var(--space-sm); color: var(--ink-soft);">
-              <option>2026-06-25（周四）</option>
+              <option>${pt('mobileDashboardDate', '2026-06-25（周四）')}</option>
             </select>
           </div>
           <div class="mini-dashboard-stats">
             <div class="mini-stat-card">
               <div class="stat-icon"><i class="ph ph-file-text"></i></div>
               <div class="stat-value">78</div>
-              <div class="stat-label">论文数量</div>
+              <div class="stat-label">${pt('mobileDashboardStatPapers', '论文数量')}</div>
             </div>
             <div class="mini-stat-card">
               <div class="stat-icon"><i class="ph ph-calendar"></i></div>
               <div class="stat-value">12</div>
-              <div class="stat-label">日期范围</div>
+              <div class="stat-label">${pt('mobileDashboardStatDays', '日期范围')}</div>
             </div>
             <div class="mini-stat-card">
               <div class="stat-icon"><i class="ph ph-hash"></i></div>
               <div class="stat-value">790</div>
-              <div class="stat-label">唯一关键词</div>
+              <div class="stat-label">${pt('mobileDashboardStatKeywords', '唯一关键词')}</div>
             </div>
             <div class="mini-stat-card">
               <div class="stat-icon"><i class="ph ph-users"></i></div>
               <div class="stat-value">453</div>
-              <div class="stat-label">唯一作者</div>
+              <div class="stat-label">${pt('mobileDashboardStatAuthors', '唯一作者')}</div>
             </div>
           </div>
           <div class="mini-topics-list">
-            <h5>关键词统计</h5>
+            <h5>${pt('mobileDashboardTopicsTitle', '关键词统计')}</h5>
             <div class="mini-topic-item">
               <span>physics.optics</span>
-              <span class="topic-count">78 次</span>
+              <span class="topic-count">${pt('mobileDashboardTimes', '78 次')}</span>
             </div>
             <div class="mini-topic-item">
               <span>optical</span>
-              <span class="topic-count">17 次</span>
+              <span class="topic-count">${pt('mobileDashboardTimes2', '17 次')}</span>
             </div>
             <div class="mini-topic-item">
               <span>physics.app-ph</span>
-              <span class="topic-count">8 次</span>
+              <span class="topic-count">${pt('mobileDashboardTimes3', '8 次')}</span>
             </div>
             <div class="mini-topic-item">
               <span>photonic</span>
-              <span class="topic-count">6 次</span>
+              <span class="topic-count">${pt('mobileDashboardTimes4', '6 次')}</span>
             </div>
             <div class="mini-topic-item">
               <span>cond-mat.mtrl-sci</span>
-              <span class="topic-count">6 次</span>
+              <span class="topic-count">${pt('mobileDashboardTimes5', '6 次')}</span>
             </div>
           </div>
         `
       },
       'mobile-saved': {
         title: 'Saved Papers',
-        subtitle: '收藏夹 · 移动端',
+        subtitle: pt('mobileSavedSubtitle', '收藏夹 · 移动端'),
         device: 'mobile',
         hasNotch: true,
         hasNavBar: true,
@@ -680,7 +688,7 @@
         content: `
           <div class="mini-app-header">
             <div>
-              <h4>收藏</h4>
+              <h4>${pt('mobileSavedTitle', '收藏')}</h4>
             </div>
             <div class="mini-app-header-actions">
               <div class="mini-icon-btn"><i class="ph ph-funnel"></i></div>
@@ -691,7 +699,7 @@
             <div class="mini-paper-body">
               <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>Physical Review</div>
               <div class="mini-paper-title">A Langevin Model-Based Magneto-Optic Response Superparamagnetic Nanoparticles Recorded with a Michelson Interferometer Setup</div>
-              <div class="mini-paper-desc">本文为溶液中超顺磁性纳米颗粒的磁光表征提供了理论框架和实验方法，分析了迈克尔逊干涉仪中的干。</div>
+              <div class="mini-paper-desc">${pt('mobileSavedDesc1', '本文为溶液中超顺磁性纳米颗粒的磁光表征提供了理论框架和实验方法，分析了迈克尔逊干涉仪中的干。')}</div>
             </div>
             <div class="mini-bookmark"><i class="ph-fill ph-star" style="color: var(--amber-500);"></i></div>
           </div>
@@ -700,7 +708,7 @@
             <div class="mini-paper-body">
               <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>Nature Photonics</div>
               <div class="mini-paper-title">A laser with instability reaching $4×10^-17$ based on a silicon cavity at sub-5 K temperatures</div>
-              <div class="mini-paper-desc">通过第一层原理研究元素金属中的体等离激元光学特性。</div>
+              <div class="mini-paper-desc">${pt('mobileSavedDesc2', '通过第一层原理研究元素金属中的体等离激元光学特性。')}</div>
             </div>
             <div class="mini-bookmark"><i class="ph-fill ph-star" style="color: var(--amber-500);"></i></div>
           </div>
@@ -709,7 +717,7 @@
             <div class="mini-paper-body">
               <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>Science Advances</div>
               <div class="mini-paper-title">Bulk plasmons in elemental metals</div>
-              <div class="mini-paper-desc">通过第一层原理研究元素金属中的体等离激元光学特性。</div>
+              <div class="mini-paper-desc">${pt('mobileSavedDesc3', '通过第一层原理研究元素金属中的体等离激元光学特性。')}</div>
             </div>
             <div class="mini-bookmark"><i class="ph-fill ph-star" style="color: var(--amber-500);"></i></div>
           </div>
@@ -717,30 +725,30 @@
       },
       'desktop-feed': {
         title: 'Desktop Feed',
-        subtitle: '三栏信息流 · Web',
+        subtitle: pt('desktopFeedSubtitle', '三栏信息流 · Web'),
         device: 'desktop',
         content: `
           <div class="mini-desktop-shell">
             <div class="mini-desktop-sidebar">
-              <h5>研究频道</h5>
-              <div class="mini-desktop-nav-item is-active"><i class="ph ph-sparkle"></i> 今日简报</div>
+              <h5>${pt('desktopFeedChannels', '研究频道')}</h5>
+              <div class="mini-desktop-nav-item is-active"><i class="ph ph-sparkle"></i> ${pt('desktopFeedNavToday', '今日简报')}</div>
               <div class="mini-desktop-nav-item"><i class="ph ph-brain"></i> AI / LLM</div>
               <div class="mini-desktop-nav-item"><i class="ph ph-atom"></i> Physics</div>
               <div class="mini-desktop-nav-item"><i class="ph ph-dna"></i> Bio Medicine</div>
-              <div class="mini-desktop-nav-item"><i class="ph ph-bookmark-simple"></i> 稍后读</div>
-              <div class="mini-desktop-nav-item"><i class="ph ph-binoculars"></i> 收藏专题</div>
+              <div class="mini-desktop-nav-item"><i class="ph ph-bookmark-simple"></i> ${pt('desktopFeedNavReadLater', '稍后读')}</div>
+              <div class="mini-desktop-nav-item"><i class="ph ph-binoculars"></i> ${pt('desktopFeedNavCollections', '收藏专题')}</div>
             </div>
             <div class="mini-desktop-feed">
               <div style="margin-bottom: var(--space-sm);">
                 <div style="font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 2px;">Daily Papers</div>
-                <div style="font-size: 10px; color: var(--ink-muted);">为你精选：AI / LLM、AI safety、multimodal learning</div>
+                <div style="font-size: 10px; color: var(--ink-muted);">${pt('desktopFeedSubtitleText', '为你精选：AI / LLM、AI safety、multimodal learning')}</div>
               </div>
               <div class="mini-paper-card" style="border: 1px solid var(--line-soft); border-radius: var(--radius-md); margin-bottom: var(--space-xs);">
                 <div class="mini-rank" style="color: var(--amber-500);">★</div>
                 <div class="mini-paper-body">
-                  <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>ArXiv AI · 因为你收藏了 reasoning</div>
+                  <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>ArXiv AI · ${pt('desktopFeedBecauseSaved', '因为你收藏了 reasoning')}</div>
                   <div class="mini-paper-title">A new scaling law for reasoning in large language models</div>
-                  <div class="mini-paper-desc">模型推理能力提升规律变得可预测，改变训练预算规划方式。</div>
+                  <div class="mini-paper-desc">${pt('desktopFeedDesc1', '模型推理能力提升规律变得可预测，改变训练预算规划方式。')}</div>
                 </div>
                 <div class="mini-bookmark"><i class="ph ph-star"></i></div>
               </div>
@@ -749,23 +757,23 @@
                 <div class="mini-paper-body">
                   <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>Nature</div>
                   <div class="mini-paper-title">A reversible gene switch for safer cell therapies</div>
-                  <div class="mini-paper-desc">精确控制治疗开关，提升临床安全性。</div>
+                  <div class="mini-paper-desc">${pt('desktopFeedDesc2', '精确控制治疗开关，提升临床安全性。')}</div>
                 </div>
                 <div class="mini-bookmark"><i class="ph ph-bookmark-simple"></i></div>
               </div>
             </div>
             <div class="mini-desktop-detail">
-              <h5><i class="ph-fill ph-sparkle" style="color: var(--violet);"></i> 关键发现</h5>
-              <p style="margin-bottom: var(--space-sm);">推理能力提升曲线可估 → 训练预算规划方式改变。</p>
+              <h5><i class="ph-fill ph-sparkle" style="color: var(--violet);"></i> ${pt('desktopFeedKeyFinding', '关键发现')}</h5>
+              <p style="margin-bottom: var(--space-sm);">${pt('desktopFeedKeyFindingDesc', '推理能力提升曲线可估 → 训练预算规划方式改变。')}</p>
               <h5>Plain English</h5>
-              <p>更大模型 + 更好数据 = 推理能力稳定提升。</p>
+              <p>${pt('desktopFeedPlainEnglish', '更大模型 + 更好数据 = 推理能力稳定提升。')}</p>
             </div>
           </div>
         `
       },
       'desktop-auth': {
         title: 'Split Auth',
-        subtitle: 'Web 登录页',
+        subtitle: pt('desktopAuthSubtitle', 'Web 登录页'),
         device: 'desktop',
         content: `
           <div class="mini-split-auth">
@@ -773,8 +781,8 @@
               <div style="margin-bottom: var(--space-md);">
                 <div style="width: 32px; height: 32px; background: var(--brand); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 14px;">S</div>
               </div>
-              <h3>把论文推荐系统，调成你的研究口味。</h3>
-              <p>登录后同步收藏、阅读进度、关键词偏好和推荐反馈。桌面端高效整理，移动端轻松阅读。</p>
+              <h3>${pt('desktopAuthHeadline', '把论文推荐系统，调成你的研究口味。')}</h3>
+              <p>${pt('desktopAuthDesc', '登录后同步收藏、阅读进度、关键词偏好和推荐反馈。桌面端高效整理，移动端轻松阅读。')}</p>
               <div class="mini-split-card">
                 <div class="mini-split-card-icon"><i class="ph ph-newspaper"></i></div>
                 <div class="mini-split-card-text">
@@ -784,89 +792,89 @@
               </div>
             </div>
             <div class="mini-split-right">
-              <h4>登录 ScholarDaily</h4>
-              <p>继续你的收藏、推荐画像和阅读进度。</p>
+              <h4>${pt('desktopAuthLoginTitle', '登录 ScholarDaily')}</h4>
+              <p>${pt('desktopAuthLoginSubtitle', '继续你的收藏、推荐画像和阅读进度。')}</p>
               <div class="mini-input-group">
-                <label>邮箱</label>
+                <label>${pt('desktopAuthEmailLabel', '邮箱')}</label>
                 <div class="mini-input"></div>
               </div>
               <div class="mini-input-group">
-                <label>密码</label>
+                <label>${pt('desktopAuthPasswordLabel', '密码')}</label>
                 <div class="mini-input"></div>
               </div>
-              <div class="mini-auth-btn">登录</div>
+              <div class="mini-auth-btn">${pt('desktopAuthLoginBtn', '登录')}</div>
               <div style="text-align: center; margin-top: var(--space-sm); font-size: 10px; color: var(--ink-muted);">
-                还没有账号？<span style="color: var(--brand);">创建账号</span>
+                ${pt('desktopAuthNoAccount', '还没有账号？')}<span style="color: var(--brand);">${pt('desktopAuthCreateAccount', '创建账号')}</span>
               </div>
-              <div class="mini-auth-divider"><span>或</span></div>
-              <div class="mini-social-btn"><i class="ph ph-google-logo"></i> 使用 Google 登录</div>
+              <div class="mini-auth-divider"><span>${pt('desktopAuthOr', '或')}</span></div>
+              <div class="mini-social-btn"><i class="ph ph-google-logo"></i> ${pt('desktopAuthGoogleLogin', '使用 Google 登录')}</div>
             </div>
           </div>
         `
       },
       'onboarding-welcome': {
         title: 'Welcome',
-        subtitle: '欢迎页 · Onboarding 01',
+        subtitle: pt('onboardingWelcomeSubtitle', '欢迎页 · Onboarding 01'),
         device: 'mobile',
         hasNotch: true,
         hasNavBar: false,
         content: `
           <div class="mini-auth-container" style="text-align: left;">
             <div class="mini-auth-logo" style="margin: 0 0 var(--space-md);">S</div>
-            <div class="mini-onboarding-title">让论文像信息流一样好读，但仍然可靠</div>
-            <div class="mini-onboarding-desc">每天 5 到 12 篇高质量论文，先给你白话关键结论，再给原文、作者和可验证来源。</div>
+            <div class="mini-onboarding-title">${pt('onboardingWelcomeTitle', '让论文像信息流一样好读，但仍然可靠')}</div>
+            <div class="mini-onboarding-desc">${pt('onboardingWelcomeDesc', '每天 5 到 12 篇高质量论文，先给你白话关键结论，再给原文、作者和可验证来源。')}</div>
             <div style="border: 1px solid var(--line); border-radius: var(--radius-md); padding: var(--space-sm); margin-bottom: var(--space-md); background: var(--surface);">
-              <div class="mini-paper-source" style="margin-bottom: 4px;"><span class="mini-paper-source-dot"></span>今日简报</div>
+              <div class="mini-paper-source" style="margin-bottom: 4px;"><span class="mini-paper-source-dot"></span>${pt('onboardingWelcomeTodayBriefing', '今日简报')}</div>
               <div class="mini-paper-title" style="margin-bottom: 4px;">A new scaling law for reasoning in large language models</div>
-              <div class="mini-paper-desc">More → reasoning. agent 和摘要的质量也在提升。</div>
+              <div class="mini-paper-desc">${pt('onboardingWelcomePaperDesc', 'More → reasoning. agent 和摘要的质量也在提升。')}</div>
             </div>
-            <div class="mini-auth-btn">开始个性化推荐</div>
+            <div class="mini-auth-btn">${pt('onboardingWelcomeStartBtn', '开始个性化推荐')}</div>
             <div style="text-align: center; margin-top: var(--space-sm); font-size: 10px; color: var(--ink-muted);">
-              已有账号，<span style="color: var(--brand);">登录</span>
+              ${pt('onboardingWelcomeHasAccount', '已有账号，')}<span style="color: var(--brand);">${pt('onboardingWelcomeLogin', '登录')}</span>
             </div>
           </div>
         `
       },
       'onboarding-login': {
         title: 'Login',
-        subtitle: '登录页 · Onboarding 02',
+        subtitle: pt('onboardingLoginSubtitle', '登录页 · Onboarding 02'),
         device: 'mobile',
         hasNotch: true,
         hasNavBar: false,
         content: `
           <div class="mini-auth-container">
             <div class="mini-auth-logo">S</div>
-            <div class="mini-auth-title">欢迎回来</div>
-            <div class="mini-auth-subtitle">继续你的今日论文简报、收藏夹和研读队列。</div>
+            <div class="mini-auth-title">${pt('onboardingLoginTitle', '欢迎回来')}</div>
+            <div class="mini-auth-subtitle">${pt('onboardingLoginSubtitleText', '继续你的今日论文简报、收藏夹和研读队列。')}</div>
             <div class="mini-input-group">
-              <label>邮箱</label>
+              <label>${pt('onboardingLoginEmailLabel', '邮箱')}</label>
               <div class="mini-input" style="text-align: left;">researcher@example.com</div>
             </div>
             <div class="mini-input-group">
-              <label>密码</label>
+              <label>${pt('onboardingLoginPasswordLabel', '密码')}</label>
               <div class="mini-input" style="text-align: left;">••••••••</div>
             </div>
-            <div class="mini-auth-btn">登录</div>
+            <div class="mini-auth-btn">${pt('onboardingLoginBtn', '登录')}</div>
             <div style="text-align: center; margin-top: var(--space-sm); font-size: 10px; color: var(--ink-muted);">
-              还没有账号？<span style="color: var(--brand);">创建账号</span>
+              ${pt('onboardingLoginNoAccount', '还没有账号？')}<span style="color: var(--brand);">${pt('onboardingLoginCreateAccount', '创建账号')}</span>
             </div>
-            <div class="mini-auth-divider"><span>或</span></div>
-            <div class="mini-social-btn"><i class="ph ph-apple-logo"></i> 使用 Apple 继续</div>
-            <div class="mini-social-btn"><i class="ph ph-google-logo"></i> 使用 Google 继续</div>
+            <div class="mini-auth-divider"><span>${pt('onboardingLoginOr', '或')}</span></div>
+            <div class="mini-social-btn"><i class="ph ph-apple-logo"></i> ${pt('onboardingLoginApple', '使用 Apple 继续')}</div>
+            <div class="mini-social-btn"><i class="ph ph-google-logo"></i> ${pt('onboardingLoginGoogle', '使用 Google 继续')}</div>
           </div>
         `
       },
       'onboarding-interests': {
         title: 'Pick Interests',
-        subtitle: '兴趣选择 · Onboarding 03',
+        subtitle: pt('onboardingInterestsSubtitle', '兴趣选择 · Onboarding 03'),
         device: 'mobile',
         hasNotch: true,
         hasNavBar: false,
         content: `
           <div class="mini-auth-container" style="text-align: left;">
             <div class="mini-step-indicator">1 / 3</div>
-            <div class="mini-onboarding-title">先选几个你关心的方向</div>
-            <div class="mini-onboarding-desc">不用选很细，后续系统会继续调整。保留"不感兴趣"继续调整。</div>
+            <div class="mini-onboarding-title">${pt('onboardingInterestsTitle', '先选几个你关心的方向')}</div>
+            <div class="mini-onboarding-desc">${pt('onboardingInterestsDesc', '不用选很细，后续系统会继续调整。保留"不感兴趣"继续调整。')}</div>
             <div class="mini-interest-tags">
               <div class="mini-interest-tag is-active">LLM</div>
               <div class="mini-interest-tag is-active">Agents</div>
@@ -881,85 +889,85 @@
               <div class="mini-interest-tag">Materials</div>
             </div>
             <div style="background: var(--surface-muted); border-radius: var(--radius-md); padding: var(--space-sm); margin-bottom: var(--space-md);">
-              <div style="font-size: 10px; color: var(--ink-muted); margin-bottom: 4px;">也可以导入你的档案</div>
-              <div style="font-size: 10px; color: var(--ink-soft);">粘贴 arXiv、zotero、分类、作者或领域</div>
-              <div style="font-size: 10px; color: var(--brand); font-weight: 500; margin-top: 4px;">BirTech 系统会自动生成初始画像。</div>
+              <div style="font-size: 10px; color: var(--ink-muted); margin-bottom: 4px;">${pt('onboardingInterestsImportHint', '也可以导入你的档案')}</div>
+              <div style="font-size: 10px; color: var(--ink-soft);">${pt('onboardingInterestsImportDesc', '粘贴 arXiv、zotero、分类、作者或领域')}</div>
+              <div style="font-size: 10px; color: var(--brand); font-weight: 500; margin-top: 4px;">${pt('onboardingInterestsAutoGen', 'BirTech 系统会自动生成初始画像。')}</div>
             </div>
-            <div class="mini-auth-btn">继续</div>
+            <div class="mini-auth-btn">${pt('onboardingInterestsContinueBtn', '继续')}</div>
             <div style="text-align: center; margin-top: var(--space-sm); font-size: 10px; color: var(--ink-muted);">
-              先跳过，直接看今日的
+              ${pt('onboardingInterestsSkip', '先跳过，直接看今日的')}
             </div>
           </div>
         `
       },
       'onboarding-notifications': {
         title: 'Notifications',
-        subtitle: '通知设置 · Onboarding 04',
+        subtitle: pt('onboardingNotificationsSubtitle', '通知设置 · Onboarding 04'),
         device: 'mobile',
         hasNotch: true,
         hasNavBar: false,
         content: `
           <div class="mini-auth-container" style="text-align: left;">
             <div class="mini-step-indicator">2 / 3</div>
-            <div class="mini-onboarding-title">让提醒像助手，不是打扰。</div>
-            <div class="mini-onboarding-desc">只在真正有价值时提醒：今日简报、关注作者更新、关键突破推送。关掉得很容易。</div>
+            <div class="mini-onboarding-title">${pt('onboardingNotificationsTitle', '让提醒像助手，不是打扰。')}</div>
+            <div class="mini-onboarding-desc">${pt('onboardingNotificationsDesc', '只在真正有价值时提醒：今日简报、关注作者更新、关键突破推送。关掉得很容易。')}</div>
             <div style="background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--radius-md); padding: 0 var(--space-sm); margin-bottom: var(--space-md);">
               <div class="mini-toggle-row">
                 <div class="mini-toggle-info">
-                  <strong>每日简报</strong>
-                  <span>每天早 8 点，当日 5 篇精选 + 摘要。</span>
+                  <strong>${pt('onboardingNotificationsDaily', '每日简报')}</strong>
+                  <span>${pt('onboardingNotificationsDailyDesc', '每天早 8 点，当日 5 篇精选 + 摘要。')}</span>
                 </div>
                 <div class="mini-toggle is-on"></div>
               </div>
               <div class="mini-toggle-row">
                 <div class="mini-toggle-info">
-                  <strong>趋势提醒</strong>
-                  <span>当某方向出现重要突破时提醒。</span>
+                  <strong>${pt('onboardingNotificationsTrends', '趋势提醒')}</strong>
+                  <span>${pt('onboardingNotificationsTrendsDesc', '当某方向出现重要突破时提醒。')}</span>
                 </div>
                 <div class="mini-toggle is-on"></div>
               </div>
               <div class="mini-toggle-row">
                 <div class="mini-toggle-info">
-                  <strong>作者动态</strong>
-                  <span>关注的作者发新论文时提醒。</span>
+                  <strong>${pt('onboardingNotificationsAuthors', '作者动态')}</strong>
+                  <span>${pt('onboardingNotificationsAuthorsDesc', '关注的作者发新论文时提醒。')}</span>
                 </div>
                 <div class="mini-toggle"></div>
               </div>
               <div class="mini-toggle-row" style="border-bottom: none;">
                 <div class="mini-toggle-info">
-                  <strong>周总结</strong>
-                  <span>每周一早上回顾上周研究进展。</span>
+                  <strong>${pt('onboardingNotificationsWeekly', '周总结')}</strong>
+                  <span>${pt('onboardingNotificationsWeeklyDesc', '每周一早上回顾上周研究进展。')}</span>
                 </div>
                 <div class="mini-toggle is-on"></div>
               </div>
             </div>
-            <div class="mini-auth-btn">保存提醒偏好</div>
+            <div class="mini-auth-btn">${pt('onboardingNotificationsSaveBtn', '保存提醒偏好')}</div>
             <div style="text-align: center; margin-top: var(--space-sm); font-size: 10px; color: var(--ink-muted);">
-              不允许通知，只在 App 内显示
+              ${pt('onboardingNotificationsDeny', '不允许通知，只在 App 内显示')}
             </div>
           </div>
         `
       },
       'onboarding-briefing': {
         title: 'First Briefing',
-        subtitle: '首版日报 · Onboarding 05',
+        subtitle: pt('onboardingBriefingSubtitle', '首版日报 · Onboarding 05'),
         device: 'mobile',
         hasNotch: true,
         hasNavBar: false,
         content: `
           <div class="mini-auth-container" style="text-align: left;">
             <div class="mini-step-indicator">3 / 3</div>
-            <div class="mini-onboarding-title">为你生成的第一版日报</div>
-            <div class="mini-onboarding-desc">基于 4 个兴趣方向和 3 次投票校准，先给你一个可感受的基础。</div>
+            <div class="mini-onboarding-title">${pt('onboardingBriefingTitle', '为你生成的第一版日报')}</div>
+            <div class="mini-onboarding-desc">${pt('onboardingBriefingDesc', '基于 4 个兴趣方向和 3 次投票校准，先给你一个可感受的基础。')}</div>
             <div style="background: var(--brand-soft); border-radius: var(--radius-md); padding: var(--space-xs) var(--space-sm); display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--brand); font-weight: 600; margin-bottom: var(--space-sm);">
-              <i class="ph-fill ph-sparkle"></i> 推荐简报 v0.1
+              <i class="ph-fill ph-sparkle"></i> ${pt('onboardingBriefingBadge', '推荐简报 v0.1')}
             </div>
             <div style="margin-bottom: var(--space-sm);">
               <div class="mini-paper-card" style="padding: var(--space-xs) 0; border: none;">
                 <div class="mini-paper-body">
                   <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>ArXiv AI</div>
                   <div class="mini-paper-title">Training language agents to browse papers with persistent memory</div>
-                  <div class="mini-paper-desc">像研究员一样持续阅读文献，不是每次都从头来。</div>
+                  <div class="mini-paper-desc">${pt('onboardingBriefingDesc1', '像研究员一样持续阅读文献，不是每次都从头来。')}</div>
                 </div>
               </div>
             </div>
@@ -968,7 +976,7 @@
                 <div class="mini-paper-body">
                   <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>ArXiv AI</div>
                   <div class="mini-paper-title">Tool-using agents improve scientific literature review</div>
-                  <div class="mini-paper-desc">工具调用型 agent 显著提升综述质量。</div>
+                  <div class="mini-paper-desc">${pt('onboardingBriefingDesc2', '工具调用型 agent 显著提升综述质量。')}</div>
                 </div>
               </div>
             </div>
@@ -977,90 +985,90 @@
                 <div class="mini-paper-body">
                   <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>Nature Photonics</div>
                   <div class="mini-paper-title">Quantum emitters meet integrated photonics</div>
-                  <div class="mini-paper-desc">量子发射器与集成光子学的融合进入新阶段。</div>
+                  <div class="mini-paper-desc">${pt('onboardingBriefingDesc3', '量子发射器与集成光子学的融合进入新阶段。')}</div>
                 </div>
               </div>
             </div>
-            <div class="mini-auth-btn">开启今日阅读</div>
+            <div class="mini-auth-btn">${pt('onboardingBriefingStartBtn', '开启今日阅读')}</div>
           </div>
         `
       },
       'onboarding-register': {
         title: 'Register',
-        subtitle: '注册页 · Auth 03',
+        subtitle: pt('onboardingRegisterSubtitle', '注册页 · Auth 03'),
         device: 'mobile',
         hasNotch: true,
         hasNavBar: false,
         content: `
           <div class="mini-auth-container" style="text-align: left;">
             <div class="mini-auth-logo" style="margin: 0 0 var(--space-md);">S</div>
-            <div class="mini-onboarding-title">创建你的研究口味</div>
-            <div class="mini-onboarding-desc">我们只问必要的信息，真正的偏好会在你使用时慢慢学出来。</div>
+            <div class="mini-onboarding-title">${pt('onboardingRegisterTitle', '创建你的研究口味')}</div>
+            <div class="mini-onboarding-desc">${pt('onboardingRegisterDesc', '我们只问必要的信息，真正的偏好会在你使用时慢慢学出来。')}</div>
             <div class="mini-input-group">
-              <label>昵称</label>
+              <label>${pt('onboardingRegisterNickname', '昵称')}</label>
               <div class="mini-input" style="text-align: left;">Ziming</div>
             </div>
             <div class="mini-input-group">
-              <label>邮箱</label>
+              <label>${pt('onboardingRegisterEmail', '邮箱')}</label>
               <div class="mini-input" style="text-align: left;">researcher@example.com</div>
             </div>
             <div class="mini-input-group">
-              <label>密码</label>
+              <label>${pt('onboardingRegisterPassword', '密码')}</label>
               <div class="mini-input" style="text-align: left;">••••••••</div>
             </div>
             <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: var(--space-md); font-size: 10px; color: var(--ink-muted);">
               <div style="width: 14px; height: 14px; border: 1px solid var(--line); border-radius: 4px; flex-shrink: 0; margin-top: 1px; background: var(--brand); display: flex; align-items: center; justify-content: center;">
                 <i class="ph ph-check" style="font-size: 10px; color: white;"></i>
               </div>
-              <span>我同意服务条款。评论和系统行为均视为研究数据，用于改进推荐算法。</span>
+              <span>${pt('onboardingRegisterTerms', '我同意服务条款。评论和系统行为均视为研究数据，用于改进推荐算法。')}</span>
             </div>
-            <div class="mini-auth-btn">创建账号</div>
+            <div class="mini-auth-btn">${pt('onboardingRegisterBtn', '创建账号')}</div>
             <div style="text-align: center; margin-top: var(--space-sm); font-size: 10px; color: var(--ink-muted);">
-              已有账号？<span style="color: var(--brand);">登录</span>
+              ${pt('onboardingRegisterHasAccount', '已有账号？')}<span style="color: var(--brand);">${pt('onboardingRegisterLogin', '登录')}</span>
             </div>
           </div>
         `
       },
       'onboarding-survey': {
         title: 'Quick Survey',
-        subtitle: '快速校准 · Onboarding 06',
+        subtitle: pt('onboardingSurveySubtitle', '快速校准 · Onboarding 06'),
         device: 'mobile',
         hasNotch: true,
         hasNavBar: false,
         content: `
           <div class="mini-auth-container" style="text-align: left;">
             <div class="mini-step-indicator">2 / 3</div>
-            <div class="mini-onboarding-title">快速校准推荐系统</div>
-            <div class="mini-onboarding-desc">快速标记你的兴趣偏好：给更多、先收藏、还是不感兴趣。</div>
+            <div class="mini-onboarding-title">${pt('onboardingSurveyTitle', '快速校准推荐系统')}</div>
+            <div class="mini-onboarding-desc">${pt('onboardingSurveyDesc', '快速标记你的兴趣偏好：给更多、先收藏、还是不感兴趣。')}</div>
             <div style="background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--space-md); margin-bottom: var(--space-md);">
               <div class="mini-paper-source" style="margin-bottom: 6px;"><span class="mini-paper-source-dot"></span>ArXiv AI</div>
               <div class="mini-paper-title" style="font-size: 13px; margin-bottom: 6px;">Training language agents to browse papers with persistent memory</div>
-              <div class="mini-paper-desc">像研究员一样持续阅读文献，不是每次都从头来。</div>
+              <div class="mini-paper-desc">${pt('onboardingSurveyPaperDesc', '像研究员一样持续阅读文献，不是每次都从头来。')}</div>
               <div style="margin-top: var(--space-sm); font-size: 10px; color: var(--ink-muted);">
-                加入你：与 Physics 兴趣匹配
+                ${pt('onboardingSurveyMatch', '加入你：与 Physics 兴趣匹配')}
               </div>
             </div>
             <div style="display: flex; gap: var(--space-sm); margin-bottom: var(--space-md);">
               <div style="flex: 1; text-align: center; padding: var(--space-sm); border: 1px solid var(--line); border-radius: var(--radius-md); font-size: 10px; color: var(--ink-muted);">
-                不感兴趣
+                ${pt('onboardingSurveyNotInterested', '不感兴趣')}
               </div>
               <div style="flex: 1; text-align: center; padding: var(--space-sm); border: 1px solid var(--brand); border-radius: var(--radius-md); font-size: 10px; color: var(--brand); background: var(--brand-soft);">
-                收藏
+                ${pt('onboardingSurveySave', '收藏')}
               </div>
               <div style="flex: 1; text-align: center; padding: var(--space-sm); border: 1px solid var(--brand); border-radius: var(--radius-md); font-size: 10px; color: white; background: var(--brand);">
-                更多类似
+                ${pt('onboardingSurveyMore', '更多类似')}
               </div>
             </div>
-            <div class="mini-auth-btn">进入今日简报</div>
+            <div class="mini-auth-btn">${pt('onboardingSurveyEnterBtn', '进入今日简报')}</div>
             <div style="text-align: center; margin-top: var(--space-sm); font-size: 10px; color: var(--ink-muted);">
-              不允许只选，只在 App 内显示
+              ${pt('onboardingSurveyDeny', '不允许只选，只在 App 内显示')}
             </div>
           </div>
         `
       },
       'desktop-macos': {
         title: 'macOS App',
-        subtitle: '桌面应用 · macOS',
+        subtitle: pt('desktopMacosSubtitle', '桌面应用 · macOS'),
         device: 'desktop',
         content: `
           <div style="width: 100%; height: 100%; background: var(--surface); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
@@ -1072,9 +1080,9 @@
             </div>
             <div style="flex: 1; display: flex;">
               <div style="width: 200px; background: var(--surface); border-right: 1px solid var(--line); padding: 12px; font-size: 10px;">
-                <div style="font-weight: 600; margin-bottom: 8px; color: var(--ink-muted);">研究频道</div>
+                <div style="font-weight: 600; margin-bottom: 8px; color: var(--ink-muted);">${pt('desktopMacosChannels', '研究频道')}</div>
                 <div style="padding: 6px 8px; background: var(--brand-soft); color: var(--brand); border-radius: 6px; margin-bottom: 4px; font-weight: 500;">
-                  今日简报
+                  ${pt('desktopMacosNavToday', '今日简报')}
                 </div>
                 <div style="padding: 6px 8px; color: var(--ink-soft); border-radius: 6px; margin-bottom: 4px;">
                   AI / LLM
@@ -1086,22 +1094,22 @@
                   Bio Medicine
                 </div>
                 <div style="padding: 6px 8px; color: var(--ink-soft); border-radius: 6px; margin-bottom: 4px;">
-                  稍后读
+                  ${pt('desktopMacosNavReadLater', '稍后读')}
                 </div>
                 <div style="padding: 6px 8px; color: var(--ink-soft); border-radius: 6px;">
-                  收藏专题
+                  ${pt('desktopMacosNavCollections', '收藏专题')}
                 </div>
               </div>
               <div style="flex: 1; padding: 16px; overflow: hidden; border-right: 1px solid var(--line);">
                 <div style="font-size: 18px; font-weight: 700; margin-bottom: 4px;">Daily Papers</div>
-                <div style="font-size: 10px; color: var(--ink-muted); margin-bottom: 12px;">为你精选 · 偏好 AI reasoning, AI safety, multimodal learning</div>
+                <div style="font-size: 10px; color: var(--ink-muted); margin-bottom: 12px;">${pt('desktopMacosSubtitleText', '为你精选 · 偏好 AI reasoning, AI safety, multimodal learning')}</div>
                 <div style="margin-bottom: 10px;">
                   <div class="mini-paper-card" style="padding: 10px; background: var(--brand-soft); border: 1px solid var(--brand-line); border-radius: 8px;">
                     <div class="mini-rank" style="background: var(--brand); color: white;">★</div>
                     <div class="mini-paper-body">
                       <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>ArXiv AI</div>
                       <div class="mini-paper-title">A new scaling law for reasoning in large language models</div>
-                      <div class="mini-paper-desc">模型推理能力提升规律变得可预测，改变训练预算规划方式。</div>
+                      <div class="mini-paper-desc">${pt('desktopMacosDesc1', '模型推理能力提升规律变得可预测，改变训练预算规划方式。')}</div>
                     </div>
                     <div class="mini-bookmark"><i class="ph-fill ph-star" style="color: var(--brand);"></i></div>
                   </div>
@@ -1112,7 +1120,7 @@
                     <div class="mini-paper-body">
                       <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>Nature</div>
                       <div class="mini-paper-title">A reversible gene switch for safer cell therapies</div>
-                      <div class="mini-paper-desc">基因治疗新开关，降低临床风险。</div>
+                      <div class="mini-paper-desc">${pt('desktopMacosDesc2', '基因治疗新开关，降低临床风险。')}</div>
                     </div>
                     <div class="mini-bookmark"><i class="ph ph-bookmark-simple"></i></div>
                   </div>
@@ -1123,7 +1131,7 @@
                     <div class="mini-paper-body">
                       <div class="mini-paper-source"><span class="mini-paper-source-dot"></span>Science</div>
                       <div class="mini-paper-title">Global methane emissions higher than thought</div>
-                      <div class="mini-paper-desc">卫星观测揭示甲烷排放增长超预期。</div>
+                      <div class="mini-paper-desc">${pt('desktopMacosDesc3', '卫星观测揭示甲烷排放增长超预期。')}</div>
                     </div>
                     <div class="mini-bookmark"><i class="ph ph-bookmark-simple"></i></div>
                   </div>
@@ -1133,17 +1141,17 @@
                 <div style="font-weight: 600; margin-bottom: 8px;">Why this matters</div>
                 <div class="mini-key-finding" style="margin-bottom: 12px;">
                   <div class="mini-key-finding-label"><i class="ph-fill ph-key"></i> Key Finding</div>
-                  <p style="font-size: 10px;">推理能力随算力和数据质量可预测提升。</p>
+                  <p style="font-size: 10px;">${pt('desktopMacosKeyFinding', '推理能力随算力和数据质量可预测提升。')}</p>
                 </div>
                 <div style="margin-bottom: 8px; font-weight: 500;">In Plain English</div>
                 <ul style="margin: 0; padding-left: 16px; font-size: 10px; color: var(--ink-soft); line-height: 1.6;">
-                  <li>更大的模型推理更好</li>
-                  <li>关系是可预测的</li>
-                  <li>数据质量很重要</li>
+                  <li>${pt('desktopMacosPlain1', '更大的模型推理更好')}</li>
+                  <li>${pt('desktopMacosPlain2', '关系是可预测的')}</li>
+                  <li>${pt('desktopMacosPlain3', '数据质量很重要')}</li>
                 </ul>
                 <div style="margin-top: 12px;">
                   <div style="background: var(--ink); color: var(--paper); padding: 8px 12px; border-radius: 6px; font-size: 10px; display: flex; align-items: center; gap: 6px;">
-                    <i class="ph-fill ph-sparkle"></i> 听论文摘要
+                    <i class="ph-fill ph-sparkle"></i> ${pt('desktopMacosListen', '听论文摘要')}
                   </div>
                 </div>
               </div>
@@ -1151,10 +1159,12 @@
           </div>
         `
       }
-    };
+      };
+    }
 
     function openPreview(pageId) {
-      const template = pageTemplates[pageId];
+      const templates = getPageTemplates();
+      const template = templates[pageId];
       if (!template) return;
 
       titleEl.textContent = template.title;
@@ -1240,6 +1250,14 @@
     });
 
     closeBtn.addEventListener('click', closePreview);
+    if (typeof i18next !== 'undefined') {
+      i18next.on('languageChanged', () => {
+        if (overlay.classList.contains('is-open')) {
+          const currentPageId = document.querySelector('[data-page-preview].is-active')?.getAttribute('data-page-preview');
+          if (currentPageId) openPreview(currentPageId);
+        }
+      });
+    }
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) closePreview();
     });
@@ -1434,10 +1452,11 @@
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: 'assets/global-knowledge-lottie/global-knowledge-earth.lottie.json',
+      path: 'assets/global-knowledge-lottie/animations/scene-1.json',
       rendererSettings: {
         preserveAspectRatio: 'xMidYMid meet',
-        progressiveLoad: true
+        progressiveLoad: true,
+        hideOnTransparent: false
       }
     });
 
