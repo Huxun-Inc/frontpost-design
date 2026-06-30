@@ -685,7 +685,7 @@ img {
 
 .showcase-tab {
   padding: 6px var(--space-sm);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   font-size: 13px;
   font-weight: 500;
   color: var(--ink-muted);
@@ -2730,7 +2730,7 @@ img {
 }
 
 .page-card-thumb.is-desktop {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 12;
 }
 
 .page-card-thumb-inner {
