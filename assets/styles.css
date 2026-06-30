@@ -653,7 +653,7 @@ img {
 
 .scroll-indicator {
   position: absolute;
-  bottom: 40px;
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 28px;
@@ -747,18 +747,18 @@ img {
 
 .mission-globe-wrapper {
   position: relative;
-  width: 360px;
-  height: 360px;
+  width: 420px;
+  height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -40px;
+  margin-top: -60px;
 }
 
 .mission-globe {
   position: relative;
-  width: 360px;
-  height: 360px;
+  width: 420px;
+  height: 420px;
 }
 
 .globe-lottie {
@@ -4446,8 +4446,8 @@ img {
 
   .mission-globe-wrapper,
   .mission-globe {
-    width: 160px;
-    height: 160px;
+    width: 240px;
+    height: 240px;
   }
 
   .globe-sparkles {
