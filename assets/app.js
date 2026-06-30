@@ -39,7 +39,7 @@
     // 更新 theme-color meta 标签（手机 Chrome 地址栏颜色）
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
-      const color = theme === 'dark' ? '#17282E' : '#FFF6D6';
+      const color = theme === 'dark' ? '#17282E' : '#F7F7F5';
       metaThemeColor.setAttribute('content', color);
     }
   }
@@ -467,6 +467,11 @@
       document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
         const key = el.getAttribute('data-i18n-aria-label');
         el.setAttribute('aria-label', i18next.t(key, { year: currentYear }));
+      });
+
+      document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        el.setAttribute('title', i18next.t(key, { year: currentYear }));
       });
 
       const pageTitle = i18next.t('landing.pageTitle', { fallbackValue: document.title });
@@ -1185,23 +1190,27 @@
         }
         contentHtml += `<div class="device-content${template.hasNotch ? ' has-notch' : ''}">${template.content}</div>`;
         if (template.hasNavBar) {
+          const navHome = typeof i18next !== 'undefined' ? i18next.t('docs.previewNavHome', { fallbackValue: '首页' }) : '首页';
+          const navStats = typeof i18next !== 'undefined' ? i18next.t('docs.previewNavStats', { fallbackValue: '数据' }) : '数据';
+          const navSaved = typeof i18next !== 'undefined' ? i18next.t('docs.previewNavSaved', { fallbackValue: '收藏' }) : '收藏';
+          const navSettings = typeof i18next !== 'undefined' ? i18next.t('docs.settings', { fallbackValue: '设置' }) : '设置';
           contentHtml += `
             <div class="device-nav-bar">
               <div class="device-nav-item ${template.activeNav === 'home' ? 'is-active' : ''}">
                 <i class="ph ph-house"></i>
-                <span>首页</span>
+                <span>${navHome}</span>
               </div>
               <div class="device-nav-item ${template.activeNav === 'stats' ? 'is-active' : ''}">
                 <i class="ph ph-chart-bar"></i>
-                <span>数据</span>
+                <span>${navStats}</span>
               </div>
               <div class="device-nav-item ${template.activeNav === 'saved' ? 'is-active' : ''}">
                 <i class="ph ph-bookmark-simple"></i>
-                <span>收藏</span>
+                <span>${navSaved}</span>
               </div>
               <div class="device-nav-item">
                 <i class="ph ph-user-circle"></i>
-                <span>设置</span>
+                <span>${navSettings}</span>
               </div>
             </div>
           `;

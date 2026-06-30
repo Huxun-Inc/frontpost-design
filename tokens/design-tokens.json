@@ -1,15 +1,15 @@
 {
   "color": {
-    "paper": "#FFF6D6",
-    "paperWarm": "#F8EEC7",
-    "surface": "#FFFBEC",
-    "surfaceMuted": "#F1E7C8",
-    "surfaceHover": "#EADDB8",
-    "surfaceActive": "#E0D19E",
+    "paper": "#F7F7F5",
+    "paperWarm": "#F3F4F2",
+    "surface": "#FFFFFF",
+    "surfaceMuted": "#F0F1EF",
+    "surfaceHover": "#E8EAE7",
+    "surfaceActive": "#DEE2DD",
     "ink": "#1F3238",
     "inkSoft": "#264653",
-    "inkMuted": "#657271",
-    "inkFaint": "#8D9187",
+    "inkMuted": "#6B716F",
+    "inkFaint": "#9A9E98",
     "line": "rgba(38, 70, 83, 0.18)",
     "lineSoft": "rgba(38, 70, 83, 0.1)",
     "lineStrong": "rgba(38, 70, 83, 0.3)",
@@ -29,7 +29,9 @@
     "danger": "#B75D46",
     "dangerSoft": "rgba(183, 93, 70, 0.12)",
     "violet": "#736283",
-    "violetSoft": "rgba(115, 98, 131, 0.12)"
+    "violetSoft": "rgba(115, 98, 131, 0.12)",
+    "warmNote": "#FFF9E8",
+    "warmNoteStrong": "#FFF3C4"
   },
   "radius": {
     "xs": 6,
@@ -52,9 +54,29 @@
     "4xl": 64
   },
   "font": {
-    "display": ["Noto Sans SC", "PingFang SC", "Inter", "system-ui", "sans-serif"],
-    "ui": ["-apple-system", "BlinkMacSystemFont", "Noto Sans SC", "PingFang SC", "Inter", "system-ui", "sans-serif"],
-    "mono": ["SF Mono", "JetBrains Mono", "Menlo", "Consolas", "monospace"]
+    "display": [
+      "Noto Sans SC",
+      "PingFang SC",
+      "Inter",
+      "system-ui",
+      "sans-serif"
+    ],
+    "ui": [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      "Noto Sans SC",
+      "PingFang SC",
+      "Inter",
+      "system-ui",
+      "sans-serif"
+    ],
+    "mono": [
+      "SF Mono",
+      "JetBrains Mono",
+      "Menlo",
+      "Consolas",
+      "monospace"
+    ]
   },
   "typeScale": {
     "display": {

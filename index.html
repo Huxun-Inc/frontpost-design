@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="PaperDaily 设计系统 — 为研究者打造的高质量论文信息流。精准推荐、实干 AI、舒服交互，让前沿研究像一款精心策划的知识杂志一样自然、克制、好读。" />
-    <meta name="theme-color" content="#FFF6D6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#F7F7F5" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#17282E" media="(prefers-color-scheme: dark)" />
     <title>PaperDaily Design — 论文日报设计系统</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%23264653%22/><text x=%2250%22 y=%2268%22 font-family=%22sans-serif%22 font-size=%2260%22 font-weight=%22800%22 text-anchor=%22middle%22 fill=%22%23FFF6D6%22>P</text></svg>" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%23264653%22/><text x=%2250%22 y=%2268%22 font-family=%22sans-serif%22 font-size=%2260%22 font-weight=%22800%22 text-anchor=%22middle%22 fill=%22%23F7F7F5%22>P</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -31,14 +31,39 @@
           <a href="docs.html#pages" class="nav-link" data-i18n="landing.navPages">页面案例</a>
         </nav>
 
-        <div class="navbar-actions">
-          <button class="icon-button" id="searchButton" aria-label="搜索" data-i18n-aria-label="landing.searchAria">
-            <i class="ph ph-magnifying-glass"></i>
+        <div class="navbar-actions toolbar">
+          <button class="toolbar-button settings-toggle" id="settingsToggle" type="button" aria-expanded="false" aria-controls="toolbarSettings">
+            <i class="ph ph-gear-six"></i>
+            <span data-i18n="docs.settings">设置</span>
           </button>
-          <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换主题" data-i18n-aria-label="landing.themeAria">
-            <i class="ph ph-sun" data-theme-icon="sun"></i>
-            <i class="ph-fill ph-moon" data-theme-icon="moon"></i>
-          </button>
+          <div class="toolbar-settings" id="toolbarSettings">
+            <label class="toolbar-control">
+              <span data-i18n="docs.languageLabel">语言</span>
+              <select id="languageSelect" data-i18n-aria-label="docs.language" aria-label="语言">
+                <option value="zh">中文</option>
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+              </select>
+            </label>
+            <div class="toolbar-control">
+              <span data-i18n="docs.fontLabel">字号</span>
+              <div class="font-size-buttons" role="group" data-i18n-aria-label="docs.fontSize" aria-label="字号">
+                <button type="button" class="font-size-btn" data-font-size="small" data-i18n-aria-label="docs.fontSizeSmall" aria-label="小号字体">
+                  <span class="fs-icon-sm">A</span>
+                </button>
+                <button type="button" class="font-size-btn is-active" data-font-size="medium" data-i18n-aria-label="docs.fontSizeMedium" aria-label="中号字体">
+                  <span class="fs-icon-md">A</span>
+                </button>
+                <button type="button" class="font-size-btn" data-font-size="large" data-i18n-aria-label="docs.fontSizeLarge" aria-label="大号字体">
+                  <span class="fs-icon-lg">A</span>
+                </button>
+              </div>
+            </div>
+            <button class="icon-button theme-toggle" id="themeToggle" type="button" data-i18n-aria-label="docs.toggleTheme" aria-label="切换主题">
+              <i class="ph ph-sun" data-theme-icon="sun"></i>
+              <i class="ph-fill ph-moon" data-theme-icon="moon"></i>
+            </button>
+          </div>
         </div>
       </div>
     </header>

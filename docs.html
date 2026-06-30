@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="PaperDaily Design 设计系统文档 — 论文日报设计规范、组件演示和页面案例。" />
-    <meta name="theme-color" content="#FFF6D6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#F7F7F5" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#17282E" media="(prefers-color-scheme: dark)" />
     <title>PaperDaily Design — 设计文档</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%23264653%22/><text x=%2250%22 y=%2268%22 font-family=%22sans-serif%22 font-size=%2260%22 font-weight=%22800%22 text-anchor=%22middle%22 fill=%22%23FFF6D6%22>P</text></svg>" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%23264653%22/><text x=%2250%22 y=%2268%22 font-family=%22sans-serif%22 font-size=%2260%22 font-weight=%22800%22 text-anchor=%22middle%22 fill=%22%23F7F7F5%22>P</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -32,11 +32,11 @@
           </button>
           <button class="toolbar-button settings-toggle" id="settingsToggle" type="button" aria-expanded="false" aria-controls="toolbarSettings">
             <i class="ph ph-gear-six"></i>
-            <span>设置</span>
+            <span data-i18n="docs.settings">设置</span>
           </button>
           <div class="toolbar-settings" id="toolbarSettings">
             <label class="toolbar-control">
-              <span>语言</span>
+              <span data-i18n="docs.languageLabel">语言</span>
               <select id="languageSelect" data-i18n-aria-label="docs.language" aria-label="语言">
                 <option value="zh">中文</option>
                 <option value="en">English</option>
@@ -44,7 +44,7 @@
               </select>
             </label>
             <div class="toolbar-control">
-              <span>字号</span>
+              <span data-i18n="docs.fontLabel">字号</span>
               <div class="font-size-buttons" role="group" data-i18n-aria-label="docs.fontSize" aria-label="字号">
                 <button type="button" class="font-size-btn" data-font-size="small" data-i18n-aria-label="docs.fontSizeSmall" aria-label="小号字体">
                   <span class="fs-icon-sm">A</span>
@@ -82,7 +82,7 @@
             <summary data-i18n="docs.groupPhilosophy">设计哲学</summary>
             <a href="#philosophy-core" data-nav-item data-i18n="docs.navPhilosophy">三个核心</a>
             <a href="#tokens-radius" data-nav-item data-i18n="docs.navRadius">圆角规范</a>
-            <a href="#tokens-theme" data-nav-item>字体与主题色</a>
+            <a href="#tokens-theme" data-nav-item data-i18n="docs.navThemeTokens">字体与主题色</a>
             <a href="#accessibility" data-nav-item data-i18n="docs.navAccessibility">无障碍阅读</a>
           </details>
 
@@ -90,7 +90,7 @@
             <summary data-i18n="docs.groupComponents">组件</summary>
             <a href="#components-paper-card" data-nav-item data-i18n="docs.navPaperCard">Paper Card</a>
             <a href="#components-summary" data-nav-item data-i18n="docs.navSummaryBlock">Summary Block</a>
-            <a href="#components-text-actions" data-nav-item>排版与标签</a>
+            <a href="#components-text-actions" data-nav-item data-i18n="docs.navTextActions">排版与标签</a>
             <a href="#components-command" data-nav-item data-i18n="docs.navCommandBar">Command Bar</a>
             <a href="#components-sheet" data-nav-item data-i18n="docs.navBottomSheet">Bottom Sheet</a>
             <a href="#components-ai" data-nav-item data-i18n="docs.navAiAnswer">AI Answer</a>
@@ -196,60 +196,132 @@
 
         <section class="doc-section" id="tokens-theme">
           <div class="doc-section-head">
-            <p class="eyebrow">Tokens</p>
-            <h2>字体与主题色</h2>
-            <p>遵循 Notion 式的低干扰排版：清楚、留白准确、层级少而稳定。主色从日报纸张感出发，用极昼黄、冰海青、深海青建立一个更克制的 AI 日报气质。</p>
+            <p class="eyebrow" data-i18n="docs.themeTokensEyebrow">Tokens</p>
+            <h2 data-i18n="docs.themeTokensTitle">字体与主题色</h2>
+            <p data-i18n="docs.themeTokensDesc">低干扰排版：清楚、留白准确、层级少而稳定。底色保持白色与浅灰，极淡报纸黄只作为高亮信号，冰海青和深海青负责品牌识别。</p>
           </div>
 
-          <div class="token-system-grid">
-            <article class="token-card type-card">
-              <h3>字号层级</h3>
-              <div class="type-scale-list">
-                <div class="type-scale-item is-display">
-                  <span>Display</span>
-                  <strong>48 / 1.15</strong>
-                  <p>首页标题、文档大标题</p>
+          <div class="design-catalog">
+            <article class="catalog-panel">
+              <div class="catalog-panel-head">
+                <span data-i18n="docs.colorSectionIndex">01 / Colors</span>
+                <h3 data-i18n="docs.colorSectionTitle">Color Palette</h3>
+              </div>
+
+              <div class="palette-group">
+                <h4 data-i18n="docs.colorGroupPrimary">Primary</h4>
+                <div class="color-card-grid">
+                  <div class="color-card">
+                    <span class="color-swatch" style="background: #1F3238;"></span>
+                    <strong data-i18n="docs.colorInk">Ink Black</strong>
+                    <code>#1F3238</code>
+                    <p data-i18n="docs.colorInkDesc">正文与标题</p>
+                  </div>
+                  <div class="color-card">
+                    <span class="color-swatch" style="background: #FFFFFF;"></span>
+                    <strong data-i18n="docs.colorWhite">Paper White</strong>
+                    <code>#FFFFFF</code>
+                    <p data-i18n="docs.colorWhiteDesc">页面主背景</p>
+                  </div>
+                  <div class="color-card">
+                    <span class="color-swatch" style="background: #264653;"></span>
+                    <strong data-i18n="docs.colorBrand">Deep Sea</strong>
+                    <code>#264653</code>
+                    <p data-i18n="docs.colorBrandDesc">品牌主色</p>
+                  </div>
                 </div>
-                <div class="type-scale-item is-headline">
-                  <span>Headline</span>
-                  <strong>28 / 1.30</strong>
-                  <p>章节标题、页面标题</p>
+              </div>
+
+              <div class="palette-group">
+                <h4 data-i18n="docs.colorGroupNeutral">Neutrals</h4>
+                <div class="color-card-grid">
+                  <div class="color-card">
+                    <span class="color-swatch" style="background: #F7F7F5;"></span>
+                    <strong data-i18n="docs.colorPage">Page Gray</strong>
+                    <code>#F7F7F5</code>
+                    <p data-i18n="docs.colorPageDesc">淡灰底色</p>
+                  </div>
+                  <div class="color-card">
+                    <span class="color-swatch" style="background: #EDEDEA;"></span>
+                    <strong data-i18n="docs.colorLine">Soft Line</strong>
+                    <code>#EDEDEA</code>
+                    <p data-i18n="docs.colorLineDesc">分割线与描边</p>
+                  </div>
+                  <div class="color-card">
+                    <span class="color-swatch" style="background: #6B716F;"></span>
+                    <strong data-i18n="docs.colorMuted">Muted Text</strong>
+                    <code>#6B716F</code>
+                    <p data-i18n="docs.colorMutedDesc">辅助文字</p>
+                  </div>
+                  <div class="color-card">
+                    <span class="color-swatch" style="background: #FFF9E8;"></span>
+                    <strong data-i18n="docs.colorWarm">Warm Note</strong>
+                    <code>#FFF9E8</code>
+                    <p data-i18n="docs.colorWarmDesc">日报高亮底</p>
+                  </div>
                 </div>
-                <div class="type-scale-item is-title">
-                  <span>Title</span>
-                  <strong>18-22 / 1.4</strong>
-                  <p>卡片标题、模块标题</p>
-                </div>
-                <div class="type-scale-item">
-                  <span>Body</span>
-                  <strong>14-15 / 1.6</strong>
-                  <p>说明文字、摘要正文</p>
+              </div>
+
+              <div class="palette-group">
+                <h4 data-i18n="docs.colorGroupAccent">Semantic Accents</h4>
+                <div class="color-card-grid">
+                  <div class="color-card">
+                    <span class="color-swatch" style="background: #A8DDDC;"></span>
+                    <strong data-i18n="docs.colorAqua">Ice Aqua</strong>
+                    <code>#A8DDDC</code>
+                    <p data-i18n="docs.colorAquaDesc">成功与信息态</p>
+                  </div>
+                  <div class="color-card">
+                    <span class="color-swatch" style="background: #6F7B52;"></span>
+                    <strong data-i18n="docs.colorMoss">Moss</strong>
+                    <code>#6F7B52</code>
+                    <p data-i18n="docs.colorMossDesc">建议与确认</p>
+                  </div>
+                  <div class="color-card">
+                    <span class="color-swatch" style="background: #C99B3B;"></span>
+                    <strong data-i18n="docs.colorOchre">Ochre</strong>
+                    <code>#C99B3B</code>
+                    <p data-i18n="docs.colorOchreDesc">提醒</p>
+                  </div>
+                  <div class="color-card">
+                    <span class="color-swatch" style="background: #B75D46;"></span>
+                    <strong data-i18n="docs.colorProof">Proof Red</strong>
+                    <code>#B75D46</code>
+                    <p data-i18n="docs.colorProofDesc">风险与校样</p>
+                  </div>
                 </div>
               </div>
             </article>
 
-            <article class="token-card palette-card">
-              <h3>主题色</h3>
-              <div class="palette-list">
-                <div class="palette-row">
-                  <span class="palette-swatch" style="background: #FFF6D6;"></span>
-                  <div><strong>极昼黄</strong><code>#FFF6D6</code></div>
+            <article class="catalog-panel">
+              <div class="catalog-panel-head">
+                <span data-i18n="docs.typeSectionIndex">02 / Typography</span>
+                <h3 data-i18n="docs.typeSectionTitle">Typography Scale</h3>
+              </div>
+              <div class="typography-scale">
+                <div class="type-row is-hero">
+                  <strong data-i18n="docs.typeDisplayHero">Display Hero</strong>
+                  <span>48px / 800 / 1.15 / Noto Sans SC</span>
                 </div>
-                <div class="palette-row">
-                  <span class="palette-swatch" style="background: #A8DDDC;"></span>
-                  <div><strong>冰海青</strong><code>#A8DDDC</code></div>
+                <div class="type-row is-display">
+                  <strong data-i18n="docs.typeDisplaySecondary">Display Secondary</strong>
+                  <span>42px / 800 / 1.15 / Noto Sans SC</span>
                 </div>
-                <div class="palette-row">
-                  <span class="palette-swatch" style="background: #264653;"></span>
-                  <div><strong>深海青</strong><code>#264653</code></div>
+                <div class="type-row is-heading">
+                  <strong data-i18n="docs.typeSectionHeading">Section Heading</strong>
+                  <span>28px / 700 / 1.30 / Noto Sans SC</span>
                 </div>
-                <div class="palette-row">
-                  <span class="palette-swatch" style="background: #B75D46;"></span>
-                  <div><strong>校样红</strong><code>#B75D46</code></div>
+                <div class="type-row is-subheading">
+                  <strong data-i18n="docs.typeSubheadingLarge">Sub-heading Large</strong>
+                  <span>22px / 700 / 1.35 / Noto Sans SC</span>
                 </div>
-                <div class="palette-row">
-                  <span class="palette-swatch" style="background: #6F7B52;"></span>
-                  <div><strong>稿纸绿</strong><code>#6F7B52</code></div>
+                <div class="type-row">
+                  <strong data-i18n="docs.typeBody">Body Text</strong>
+                  <span>15px / 400 / 1.60 / system-ui</span>
+                </div>
+                <div class="type-row is-caption">
+                  <strong data-i18n="docs.typeCaption">Caption</strong>
+                  <span>12px / 500 / 1.50 / system-ui</span>
                 </div>
               </div>
             </article>
@@ -401,40 +473,40 @@
 
         <section class="doc-section" id="components-text-actions">
           <div class="doc-section-head">
-            <p class="eyebrow">Components</p>
-            <h2>文本排版、按钮与提示标签</h2>
-            <p>文本工具要像编辑器控件，不像营销按钮；提示标签用轻玻璃底和细边框，避免整块高饱和色压住正文。</p>
+            <p class="eyebrow" data-i18n="docs.componentsEyebrow">Components</p>
+            <h2 data-i18n="docs.textActionsTitle">文本排版、按钮与提示标签</h2>
+            <p data-i18n="docs.textActionsDesc">文本工具要像编辑器控件，不像营销按钮；提示标签用轻玻璃底和细边框，避免整块高饱和色压住正文。</p>
           </div>
 
           <div class="doc-grid">
             <div class="doc-copy">
               <ul class="doc-list">
-                <li>排版动作使用熟悉图标，鼠标悬停再解释含义。</li>
-                <li>重要按钮保持实体感，次级动作降低对比度，避免一排按钮全在抢注意力。</li>
-                <li>引用、Info、Warning、Tip 用同一套玻璃态标签，只靠左侧细线和图标区分语义。</li>
+                <li data-i18n="docs.textActionsRuleOne">排版动作使用熟悉图标，鼠标悬停再解释含义。</li>
+                <li data-i18n="docs.textActionsRuleTwo">重要按钮保持实体感，次级动作降低对比度，避免一排按钮全在抢注意力。</li>
+                <li data-i18n="docs.textActionsRuleThree">引用、Info、Warning、Tip 用同一套玻璃态标签，只靠左侧细线和图标区分语义。</li>
               </ul>
             </div>
 
             <div class="demo-box">
               <div class="demo-content">
-                <div class="editor-toolbar-demo" aria-label="文本排版工具示例">
-                  <button type="button" title="加粗"><i class="ph ph-text-b"></i></button>
-                  <button type="button" title="斜体"><i class="ph ph-text-italic"></i></button>
-                  <button type="button" title="引用"><i class="ph ph-quotes"></i></button>
-                  <button type="button" title="项目列表"><i class="ph ph-list-bullets"></i></button>
-                  <button type="button" title="代码"><i class="ph ph-code"></i></button>
+                <div class="editor-toolbar-demo" data-i18n-aria-label="docs.editorToolbarAria" aria-label="文本排版工具示例">
+                  <button type="button" data-i18n-title="docs.textBold" title="加粗"><i class="ph ph-text-b"></i></button>
+                  <button type="button" data-i18n-title="docs.textItalic" title="斜体"><i class="ph ph-text-italic"></i></button>
+                  <button type="button" data-i18n-title="docs.textQuote" title="引用"><i class="ph ph-quotes"></i></button>
+                  <button type="button" data-i18n-title="docs.textBullets" title="项目列表"><i class="ph ph-list-bullets"></i></button>
+                  <button type="button" data-i18n-title="docs.textCode" title="代码"><i class="ph ph-code"></i></button>
                 </div>
                 <div class="button-demo-row rich-buttons">
-                  <button class="btn btn-primary btn-md" type="button"><i class="ph ph-sparkle"></i><span>生成摘要</span></button>
-                  <button class="btn btn-secondary btn-md" type="button"><i class="ph ph-bookmark-simple"></i><span>收藏</span></button>
-                  <button class="btn btn-outline btn-md" type="button"><i class="ph ph-share-network"></i><span>分享</span></button>
-                  <button class="btn btn-ghost btn-md" type="button"><i class="ph ph-dots-three"></i><span>更多</span></button>
+                  <button class="btn btn-primary btn-md" type="button"><i class="ph ph-sparkle"></i><span data-i18n="docs.buttonGenerate">生成摘要</span></button>
+                  <button class="btn btn-secondary btn-md" type="button"><i class="ph ph-bookmark-simple"></i><span data-i18n="docs.buttonSave">收藏</span></button>
+                  <button class="btn btn-outline btn-md" type="button"><i class="ph ph-share-network"></i><span data-i18n="docs.buttonShare">分享</span></button>
+                  <button class="btn btn-ghost btn-md" type="button"><i class="ph ph-dots-three"></i><span data-i18n="docs.buttonMore">更多</span></button>
                 </div>
                 <div class="callout-stack">
-                  <div class="callout-chip is-citation"><i class="ph ph-quotes"></i><span>[1] 引用来自原文实验设置段落。</span></div>
-                  <div class="callout-chip is-info"><i class="ph ph-info"></i><span>Info：这个结论适用于 10B 到 100B 参数范围。</span></div>
-                  <div class="callout-chip is-warning"><i class="ph ph-warning"></i><span>Warning：小样本外推需要谨慎。</span></div>
-                  <div class="callout-chip is-tip"><i class="ph ph-lightbulb"></i><span>Tip：可直接加入本周阅读队列。</span></div>
+                  <div class="callout-chip is-citation"><i class="ph ph-quotes"></i><span data-i18n="docs.calloutCitation">[1] 引用来自原文实验设置段落。</span></div>
+                  <div class="callout-chip is-info"><i class="ph ph-info"></i><span data-i18n="docs.calloutInfo">Info：这个结论适用于 10B 到 100B 参数范围。</span></div>
+                  <div class="callout-chip is-warning"><i class="ph ph-warning"></i><span data-i18n="docs.calloutWarning">Warning：小样本外推需要谨慎。</span></div>
+                  <div class="callout-chip is-tip"><i class="ph ph-lightbulb"></i><span data-i18n="docs.calloutTip">Tip：可直接加入本周阅读队列。</span></div>
                 </div>
               </div>
             </div>
