@@ -1387,7 +1387,7 @@
     const empty = document.getElementById('iconEmpty');
     if (!input || !grid || !count || !empty) return;
 
-    const icons = [
+    const featuredIconKeywords = new Map([
       ['magnifying-glass', '搜索 search find'],
       ['house', '首页 home'],
       ['newspaper', '日报 news paper'],
@@ -1444,7 +1444,9 @@
       ['atom', '物理 science'],
       ['dna', '生物 bio'],
       ['binoculars', '发现 discover']
-    ];
+    ]);
+    const featuredIconNames = [...featuredIconKeywords.keys()];
+    let icons = featuredIconNames.map(name => [name, featuredIconKeywords.get(name)]);
 
     async function copyText(text) {
       try {
@@ -1462,10 +1464,39 @@
       }
     }
 
+    function getIconKeywords(name) {
+      const readable = name.replace(/-/g, ' ');
+      return `${readable} ${featuredIconKeywords.get(name) || ''}`;
+    }
+
+    function parseIconNames(cssText) {
+      return [...new Set([...cssText.matchAll(/\.ph-([a-z0-9-]+)::?before/g)].map(match => match[1]))].sort();
+    }
+
+    async function loadFullIconSet() {
+      const cssLinks = [...document.querySelectorAll('link[rel="stylesheet"]')]
+        .map(link => link.href)
+        .filter(href => href.includes('@phosphor-icons/web') && href.includes('/regular/'));
+
+      for (const href of cssLinks) {
+        try {
+          const response = await fetch(href);
+          if (!response.ok) continue;
+          const names = parseIconNames(await response.text());
+          if (names.length > featuredIconNames.length) return names;
+        } catch (error) {
+          // Cross-origin stylesheets can fail in some local setups; fall back below.
+        }
+      }
+
+      return featuredIconNames;
+    }
+
     function render() {
       const query = input.value.trim().toLowerCase();
-      const filtered = icons.filter(([name, keywords]) => {
-        const haystack = `${name} ${keywords}`.toLowerCase();
+      const sourceIcons = query ? icons : icons.filter(([name]) => featuredIconKeywords.has(name));
+      const filtered = sourceIcons.filter(([name]) => {
+        const haystack = getIconKeywords(name).toLowerCase();
         return query === '' || haystack.includes(query);
       });
 
@@ -1489,11 +1520,15 @@
       });
 
       empty.hidden = filtered.length > 0;
-      count.textContent = query ? `${filtered.length} / ${icons.length}` : `常用 ${filtered.length}`;
+      count.textContent = query ? `${filtered.length} / ${icons.length}` : `完整库 ${icons.length} · 常用 ${filtered.length}`;
     }
 
     input.addEventListener('input', render);
     render();
+    loadFullIconSet().then(names => {
+      icons = names.map(name => [name, getIconKeywords(name)]);
+      render();
+    });
   }
 
   function initGlobeLottie() {
