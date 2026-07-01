@@ -839,8 +839,8 @@ img {
 
 .mission-globe-wrapper {
   position: relative;
-  width: clamp(240px, 28vw, 320px);
-  height: clamp(240px, 28vw, 320px);
+  width: clamp(320px, 34vw, 420px);
+  height: clamp(320px, 34vw, 420px);
   display: flex;
   align-items: center;
   justify-content: center;

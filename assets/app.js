@@ -1503,8 +1503,17 @@
         const op = Number(doc.op || 1);
         const totalFrames = Math.max(1, op - ip);
 
-        canvas.width = w;
-        canvas.height = h;
+        const rect = canvas.getBoundingClientRect();
+        const displayWidth = Math.max(w, Math.round(rect.width || w));
+        const displayHeight = Math.max(h, Math.round(rect.height || h));
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        const renderWidth = Math.round(displayWidth * pixelRatio);
+        const renderHeight = Math.round(displayHeight * pixelRatio);
+
+        canvas.width = renderWidth;
+        canvas.height = renderHeight;
+        canvas.style.width = displayWidth + 'px';
+        canvas.style.height = displayHeight + 'px';
 
         const assets = {
           'ArialUnicode.ttf': fontBuffer
@@ -1517,7 +1526,7 @@
         if (!surface) throw new Error('CanvasKit.MakeCanvasSurface returned null');
 
         const skCanvas = surface.getCanvas();
-        const bounds = CanvasKit.LTRBRect(0, 0, w, h);
+        const bounds = CanvasKit.LTRBRect(0, 0, renderWidth, renderHeight);
         const start = performance.now();
 
         function draw(now) {
@@ -1535,7 +1544,9 @@
         requestAnimationFrame(draw);
 
         canvas.dataset.animationReady = 'true';
-        console.log('[CanvasKit] playing: ' + w + 'x' + h + ', ' + fps + 'fps, ' + totalFrames + ' frames');
+        canvas.dataset.renderWidth = String(renderWidth);
+        canvas.dataset.renderHeight = String(renderHeight);
+        console.log('[CanvasKit] playing: ' + renderWidth + 'x' + renderHeight + ' backing, ' + fps + 'fps, ' + totalFrames + ' frames');
 
         window.addEventListener('beforeunload', () => {
           try { animation.delete(); } catch (_) {}
