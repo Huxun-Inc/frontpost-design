@@ -825,7 +825,7 @@ img {
 
 .scroll-indicator {
   position: absolute;
-  bottom: 40px;
+  bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 28px;
@@ -1319,16 +1319,19 @@ img {
 .citation-reference-item:target,
 .citation-reference-item.is-target-pulse {
   animation: citationTargetPulse 620ms var(--ease-out) 1;
+  background: transparent;
 }
 
 @keyframes citationTargetPulse {
   0%, 100% {
+    background: transparent;
     border-color: var(--line);
     box-shadow: none;
   }
   45% {
+    background: transparent;
     border-color: var(--brand);
-    box-shadow: 0 0 0 5px color-mix(in srgb, var(--brand-soft) 72%, transparent);
+    box-shadow: none;
   }
 }
 
