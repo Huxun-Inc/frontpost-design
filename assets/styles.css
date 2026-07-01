@@ -2585,37 +2585,53 @@ img {
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-2xl);
+  gap: var(--space-lg);
 }
 
 .feature-item {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   min-width: 0;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  transition: all 200ms var(--ease-out);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  box-shadow: var(--shadow-xs);
+}
+
+.feature-item:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.08);
 }
 
 .feature-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-2xl);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
   background: var(--brand-soft);
   color: var(--brand);
-  display: grid;
-  place-items: center;
-  font-size: 26px;
-  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-sm);
+  font-size: 22px;
 }
 
 .feature-item h3 {
-  font-size: var(--font-title2-size);
-  font-weight: 700;
+  font-size: var(--font-body-size);
+  font-weight: 600;
   color: var(--ink);
+  margin-bottom: 0;
   letter-spacing: 0;
 }
 
 .feature-item p {
-  font-size: var(--font-body-size);
+  font-size: var(--font-body-sm-size);
   color: var(--ink-soft);
   line-height: 1.7;
 }
@@ -3462,6 +3478,13 @@ img {
 
 .doc-copy {
   order: 1;
+}
+
+.doc-copy h3 {
+  margin-bottom: var(--space-sm);
+  font-size: var(--font-title2-size);
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .doc-list {
@@ -5838,15 +5861,15 @@ img {
 .email-hero {
   margin: var(--space-md);
   padding: var(--space-lg);
-  border: 1px solid var(--warm-border);
+  border: 1px solid var(--brand-line);
   border-radius: var(--radius-md);
   background:
-    linear-gradient(135deg, var(--warm-surface-strong), var(--panel-tint-top)),
+    linear-gradient(135deg, var(--brand-soft), var(--panel-tint-top)),
     var(--surface);
 }
 
 .email-hero p {
-  color: var(--warning);
+  color: var(--brand);
   font-family: var(--font-mono);
   font-size: var(--font-micro-size);
   font-weight: 800;
