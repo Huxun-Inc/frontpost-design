@@ -1192,13 +1192,13 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.42em;
-  height: 1.42em;
-  margin: 0 0.16em;
-  border: 1px solid var(--line);
+  width: 1.34em;
+  height: 1.34em;
+  margin: 0 0.08em 0 0.2em;
+  border: 1px solid var(--brand-press);
   border-radius: var(--radius-pill);
-  background: var(--glass-bg-strong);
-  color: var(--brand-press);
+  background: var(--brand-press);
+  color: var(--paper);
   font-size: 0.66em;
   line-height: 1;
   font-weight: 800;
@@ -1209,13 +1209,14 @@ img {
 
 .citation-marker:hover {
   border-color: var(--brand);
-  background: var(--brand-soft);
-  color: var(--brand-press);
+  background: var(--brand);
+  color: var(--paper);
 }
 
 .citation-reference-list {
   display: grid;
   gap: var(--space-xs);
+  margin-left: 10px;
   list-style: none;
   counter-reset: citation-ref;
 }
@@ -1224,24 +1225,36 @@ img {
   scroll-margin-top: 96px;
   counter-increment: citation-ref;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--space-xs);
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: var(--space-sm);
   align-items: start;
-  padding: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
   border: 1px solid transparent;
   border-radius: var(--radius-md);
   color: var(--ink-muted);
 }
 
 .citation-reference-item p {
+  position: relative;
+  grid-column: 2;
   margin: 0;
   font-size: var(--font-caption-size);
   line-height: 1.7;
 }
 
 .citation-reference-item p::before {
-  content: "[" counter(citation-ref) "] ";
-  color: var(--ink-muted);
+  content: counter(citation-ref);
+  position: absolute;
+  left: calc(-24px - var(--space-sm));
+  top: 0.2em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  background: var(--brand-press);
+  color: var(--paper);
   font-family: var(--font-mono);
   font-size: var(--font-micro-size);
   font-weight: 800;
@@ -1252,14 +1265,18 @@ img {
 }
 
 .citation-back {
-  display: inline-grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35em;
+  height: 1.35em;
+  margin-left: 0.24em;
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
   background: transparent;
   color: var(--ink-muted);
+  font-size: 0.9em;
+  vertical-align: text-bottom;
   transition: border-color 160ms var(--ease-out), background 160ms var(--ease-out), color 160ms var(--ease-out), transform 160ms var(--ease-out);
 }
 
@@ -1301,7 +1318,7 @@ img {
 .citation-marker.is-target-pulse,
 .citation-reference-item:target,
 .citation-reference-item.is-target-pulse {
-  animation: citationTargetPulse 520ms var(--ease-out) 3;
+  animation: citationTargetPulse 620ms var(--ease-out) 1;
 }
 
 @keyframes citationTargetPulse {

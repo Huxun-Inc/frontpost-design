@@ -605,15 +605,15 @@
           <div class="doc-section-head">
             <p class="eyebrow" data-i18n="docs.componentsEyebrow">Components</p>
             <h2>Citation Trace</h2>
-            <p data-i18n="docs.citationTraceDesc">用于论文阅读、AI 摘要和数据洞见中的可溯源引用：正文小标负责快速定位来源，底部参考条目负责返回被引用位置，帮助用户在阅读过程中验证证据而不中断理解。</p>
+            <p data-i18n="docs.citationTraceDesc">用于论文阅读、AI 摘要和数据洞见中的可溯源引用：正文实心圆小标负责快速定位来源，参考条目的实心圆编号保持一致，句末返回按钮带用户回到被引用位置。</p>
           </div>
 
           <div class="doc-grid">
             <div class="doc-copy">
               <ul class="doc-list">
-                <li data-i18n="docs.citationTraceRuleOne">引用小标紧跟被支撑的数据、结论或判断，不单独占据一行，也不抢正文层级。</li>
-                <li data-i18n="docs.citationTraceRuleTwo">点击正文小标跳到参考条目，条目短暂闪烁；点击条目左侧返回按钮跳回正文小标。</li>
-                <li data-i18n="docs.citationTraceRuleThree">参考条目保留作者、年份、题名、出版物或机构、DOI / URL，并区分原始证据与界面解释。</li>
+                <li data-i18n="docs.citationTraceRuleOne">正文引用小标使用实心圆数字，紧跟被支撑的数据、结论或判断，不单独占据一行。</li>
+                <li data-i18n="docs.citationTraceRuleTwo">点击正文小标跳到参考条目，目标条目轻闪一次；参考条目数字也使用同款实心圆，保持视觉对应。</li>
+                <li data-i18n="docs.citationTraceRuleThree">参考条目保留作者、年份、题名、出版物或机构、DOI / URL，并把返回按钮放在条目末尾，像脚注一样可回跳。</li>
               </ul>
             </div>
 
@@ -624,8 +624,7 @@
                 </p>
                 <ol class="citation-reference-list">
                   <li class="citation-reference-item" id="doc-ref-trace-1">
-                    <a class="citation-back" href="#doc-cite-trace-1" data-i18n-aria-label="docs.citationTraceBackAria" aria-label="回到正文引用"><i class="ph ph-arrow-u-up-left"></i></a>
-                    <p><strong data-i18n="docs.citationTraceDemoRefTitle">Amano et al. (2016).</strong> <span data-i18n="docs.citationTraceDemoRef">Languages Are Still a Major Barrier to Global Science. PLOS Biology. DOI: 10.1371/journal.pbio.2000933.</span></p>
+                    <p><strong data-i18n="docs.citationTraceDemoRefTitle">Amano et al. (2016).</strong> <span data-i18n="docs.citationTraceDemoRef">Languages Are Still a Major Barrier to Global Science. PLOS Biology. DOI: 10.1371/journal.pbio.2000933.</span> <a class="citation-back" href="#doc-cite-trace-1" data-i18n-aria-label="docs.citationTraceBackAria" aria-label="回到正文引用"><i class="ph ph-arrow-u-up-left"></i></a></p>
                   </li>
                 </ol>
               </div>
