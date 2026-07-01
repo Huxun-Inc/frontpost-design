@@ -3481,10 +3481,16 @@ img {
 }
 
 .doc-copy h3 {
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
   font-size: var(--font-title2-size);
   font-weight: 700;
   color: var(--ink);
+}
+
+.a11y-divider {
+  height: 1px;
+  background: var(--line-soft);
+  margin: var(--space-xl) 0;
 }
 
 .doc-list {

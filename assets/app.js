@@ -1387,64 +1387,21 @@
     const empty = document.getElementById('iconEmpty');
     if (!input || !grid || !count || !empty) return;
 
-    const icons = [
-      ['magnifying-glass', '搜索 search find'],
-      ['house', '首页 home'],
-      ['newspaper', '日报 news paper'],
-      ['file-text', '论文 document paper'],
-      ['bookmark-simple', '收藏 save bookmark'],
-      ['star', '星标 favorite'],
-      ['sparkle', 'AI summary magic'],
-      ['brain', '智能 brain'],
-      ['chat-circle', '对话 chat copilot'],
-      ['quotes', '引用 citation quote'],
-      ['warning', '警告 warning alert'],
-      ['info', '信息 info'],
-      ['lightbulb', '提示 tip idea'],
-      ['text-b', '加粗 bold'],
-      ['text-italic', '斜体 italic'],
-      ['list-bullets', '列表 bullets'],
-      ['code', '代码 code'],
-      ['gear-six', '设置 settings'],
-      ['sliders', '筛选 filter settings'],
-      ['funnel', '过滤 filter'],
-      ['globe', '语言 i18n international'],
-      ['translate', '翻译 translate language'],
-      ['text-aa', '字号 accessibility'],
-      ['moon', '暗色 dark theme'],
-      ['sun', '亮色 light theme'],
-      ['caret-left', '返回 back'],
-      ['arrow-right', '前进 next'],
-      ['caret-double-down', '下滑 scroll'],
-      ['dots-three', '更多 more'],
-      ['dots-three-circle', '更多 more menu'],
-      ['share-network', '分享 share'],
-      ['download-simple', '下载 download'],
-      ['upload-simple', '上传 upload'],
-      ['copy', '复制 copy'],
-      ['check', '完成 check'],
-      ['x', '关闭 close'],
-      ['plus', '新增 add'],
-      ['minus', '减少 remove'],
-      ['calendar', '日期 calendar'],
-      ['clock', '时间 time'],
-      ['chart-bar', '数据 chart'],
-      ['hash', '标签 tag hash'],
-      ['tag', '标签 tag'],
-      ['users', '作者 users'],
-      ['user-circle', '账户 profile'],
-      ['bell', '通知 notification'],
-      ['eye', '阅读 read view'],
-      ['eye-slash', '隐藏 hide'],
-      ['arrows-clockwise', '刷新 refresh'],
-      ['arrows-left-right', '双向 rtl direction'],
-      ['device-mobile', '移动端 mobile'],
-      ['desktop', '桌面端 desktop'],
-      ['github-logo', 'GitHub'],
-      ['atom', '物理 science'],
-      ['dna', '生物 bio'],
-      ['binoculars', '发现 discover']
+    const commonIcons = [
+      'magnifying-glass', 'house', 'newspaper', 'file-text', 'bookmark-simple',
+      'star', 'sparkle', 'brain', 'chat-circle', 'quotes', 'warning', 'info',
+      'lightbulb', 'text-b', 'text-italic', 'list-bullets', 'code', 'gear-six',
+      'sliders', 'funnel', 'globe', 'translate', 'text-aa', 'moon', 'sun',
+      'caret-left', 'arrow-right', 'caret-double-down', 'dots-three', 'dots-three-circle',
+      'share-network', 'download-simple', 'upload-simple', 'copy', 'check', 'x',
+      'plus', 'minus', 'calendar', 'clock', 'chart-bar', 'hash', 'tag', 'users',
+      'user-circle', 'bell', 'eye', 'eye-slash', 'arrows-clockwise', 'arrows-left-right',
+      'device-mobile', 'desktop', 'github-logo', 'atom', 'dna', 'binoculars'
     ];
+
+    const allIcons = window.PHOSPHOR_ICONS && window.PHOSPHOR_ICONS.length > 0
+      ? window.PHOSPHOR_ICONS
+      : commonIcons;
 
     async function copyText(text) {
       try {
@@ -1464,13 +1421,16 @@
 
     function render() {
       const query = input.value.trim().toLowerCase();
-      const filtered = icons.filter(([name, keywords]) => {
-        const haystack = `${name} ${keywords}`.toLowerCase();
-        return query === '' || haystack.includes(query);
+      const hasQuery = query !== '';
+      const source = hasQuery ? allIcons : commonIcons;
+      const filtered = source.filter(name => {
+        if (!hasQuery) return true;
+        const haystack = name.replace(/-/g, ' ');
+        return name.includes(query) || haystack.includes(query);
       });
 
       grid.innerHTML = '';
-      filtered.forEach(([name]) => {
+      filtered.forEach(name => {
         const card = document.createElement('button');
         card.className = 'icon-card';
         card.type = 'button';
@@ -1489,7 +1449,11 @@
       });
 
       empty.hidden = filtered.length > 0;
-      count.textContent = query ? `${filtered.length} / ${icons.length}` : `常用 ${filtered.length}`;
+      if (hasQuery) {
+        count.textContent = `${filtered.length} / ${allIcons.length}`;
+      } else {
+        count.textContent = `常用 ${filtered.length}`;
+      }
     }
 
     input.addEventListener('input', render);
