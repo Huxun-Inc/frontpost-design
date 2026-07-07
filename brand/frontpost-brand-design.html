@@ -390,17 +390,18 @@
         border: 1px solid var(--line-soft);
         border-radius: 16px;
         background:
-          radial-gradient(ellipse 70% 50% at 50% 40%, rgb(168 221 220 / 14%), transparent 70%),
-          linear-gradient(180deg, #153f4a, #264653);
+          radial-gradient(ellipse 70% 50% at 50% 40%, rgba(180, 185, 190, 0.14), transparent 70%),
+          linear-gradient(180deg, #2A2F38, #1A1D24);
         display: grid;
         place-items: center;
       }
 
       .graphic-panel img {
         display: block;
-        width: min(70%, 260px);
+        width: 80%;
+        max-width: 480px;
         height: auto;
-        opacity: 0.85;
+        opacity: 0.92;
         z-index: 1;
       }
 
