@@ -10,7 +10,7 @@
   </style>
   <rect class="tile" x="0" y="0" width="900" height="300"/>
   <text class="text" x="450" y="158">FrontPost</text>
-  <g class="star" transform="translate(675 98) scale(0.055) translate(-512 -512)">
+  <g class="star" transform="translate(642 102) scale(0.055) translate(-512 -512)">
     <path d="M512 168 C535 348 574 450 856 512 C574 574 535 676 512 856 C489 676 450 574 168 512 C450 450 489 348 512 168 Z"/>
   </g>
 </svg>
