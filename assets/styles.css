@@ -549,8 +549,23 @@ img {
 }
 
 .nav-link.is-active {
-  color: var(--brand);
-  background: var(--brand-soft);
+  color: var(--paper);
+  background: var(--ink);
+  box-shadow: 0 8px 18px -14px var(--ink);
+}
+
+[data-theme="dark"] .nav-link.is-active {
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: 0 8px 18px -14px var(--paper);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .nav-link.is-active {
+    color: var(--ink);
+    background: var(--paper);
+    box-shadow: 0 8px 18px -14px var(--paper);
+  }
 }
 
 .navbar-actions {
@@ -2984,6 +2999,12 @@ img {
 .topbar .brand {
   font-size: var(--font-body-sm-size);
   font-weight: 600;
+}
+
+.topbar .site-nav {
+  flex: 1 1 auto;
+  justify-content: center;
+  min-width: 0;
 }
 
 .toolbar {
