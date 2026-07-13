@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="300" viewBox="0 0 900 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">FrontPost simplified text mark dark RTL</title>
+  <desc id="desc">FrontPost wordmark centered with a small sparkle tucked against its upper-left corner on a deep sea teal tile.</desc>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&amp;display=swap');
+    .tile { fill: #264653; }
+    .text { fill: #ffffff; font-family: 'Newsreader', Georgia, serif; font-size: 90px; font-weight: 500; letter-spacing: -0.02em; dominant-baseline: central; text-anchor: middle; }
+    .star { fill: #ffffff; }
+  </style>
+  <rect class="tile" x="0" y="0" width="900" height="300"/>
+  <text class="text" x="450" y="158">FrontPost</text>
+  <g class="star" transform="translate(237 141) scale(0.055) translate(-512 -512)">
+    <path d="M512 168 C535 348 574 450 856 512 C574 574 535 676 512 856 C489 676 450 574 168 512 C450 450 489 348 512 168 Z"/>
+  </g>
+</svg>

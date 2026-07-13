@@ -506,6 +506,7 @@
     const languageSelect = document.getElementById('languageSelect');
     const savedLanguage = localStorage.getItem('FrontPost-language');
     const isNestedPage = /^\/[^/]*\/brand\//.test(window.location.pathname) || /^\/brand\//.test(window.location.pathname);
+    const isBrandPage = body.classList.contains('brand-page');
     const localeBasePath = isNestedPage ? '../locales/{{lng}}/common.json' : 'locales/{{lng}}/common.json';
     const i18nOptions = {
       fallbackLng: 'zh',

@@ -274,6 +274,18 @@
         flex: 0 0 auto;
       }
 
+      .rtl-brand-asset {
+        display: none;
+      }
+
+      html[dir="rtl"] .ltr-brand-asset {
+        display: none;
+      }
+
+      html[dir="rtl"] .rtl-brand-asset {
+        display: block;
+      }
+
 
 
       .rule-table {
@@ -475,6 +487,41 @@
         min-width: 76px;
       }
 
+      html[dir="rtl"] .brand-page {
+        text-align: right;
+      }
+
+      html[dir="rtl"] .brand-hero {
+        background:
+          radial-gradient(circle at 28% 72%, rgb(168 221 220 / 20%), transparent 22%),
+          linear-gradient(180deg, #123942 0%, #264653 100%);
+      }
+
+      html[dir="rtl"] .brand-hero::after {
+        right: auto;
+        left: -13%;
+      }
+
+      html[dir="rtl"] .brand-hero-copy,
+      html[dir="rtl"] .brand-section-head {
+        margin-right: 0;
+        margin-left: auto;
+      }
+
+      html[dir="rtl"] .brand-hero-mark {
+        right: auto;
+        left: clamp(26px, 5vw, 58px);
+      }
+
+      html[dir="rtl"] .brand-toc .ph-arrow-right {
+        transform: scaleX(-1);
+      }
+
+      html[dir="rtl"] .brand-card.centered,
+      html[dir="rtl"] .asset-meta {
+        text-align: center;
+      }
+
       @media (max-width: 1080px) {
         .download-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -498,6 +545,11 @@
           width: 115%;
         }
 
+        html[dir="rtl"] .brand-hero::after {
+          right: auto;
+          left: -48%;
+        }
+
         .brand-principles,
         .equal-logo-grid,
         .two-column-grid,
@@ -508,6 +560,10 @@
 
         .lockup-preview {
           justify-content: flex-start;
+        }
+
+        html[dir="rtl"] .lockup-preview {
+          justify-content: flex-end;
         }
 
         .rule-row {
@@ -627,14 +683,16 @@
           </article>
           <article class="brand-card">
             <div class="lockup-preview">
-              <img src="frontpost-simplified-light.svg" alt="" style="width: 100%; max-width: 380px; height: auto;" />
+              <img class="ltr-brand-asset" src="frontpost-simplified-light.svg" alt="" style="width: 100%; max-width: 380px; height: auto;" />
+              <img class="rtl-brand-asset" src="frontpost-simplified-light-rtl.svg" alt="" style="width: 100%; max-width: 380px; height: auto;" />
             </div>
             <h3 data-i18n="brand.simplifiedLightTitle"></h3>
             <p data-i18n="brand.simplifiedLightCopy"></p>
           </article>
           <article class="brand-card">
             <div class="lockup-preview">
-              <img src="frontpost-simplified-dark.svg" alt="" style="width: 100%; max-width: 380px; height: auto;" />
+              <img class="ltr-brand-asset" src="frontpost-simplified-dark.svg" alt="" style="width: 100%; max-width: 380px; height: auto;" />
+              <img class="rtl-brand-asset" src="frontpost-simplified-dark-rtl.svg" alt="" style="width: 100%; max-width: 380px; height: auto;" />
             </div>
             <h3 data-i18n="brand.simplifiedDarkTitle"></h3>
             <p data-i18n="brand.simplifiedDarkCopy"></p>
