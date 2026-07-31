@@ -53,6 +53,7 @@ AI 专注于提炼论文/新闻重点、解释方法贡献、生成速读摘要�
 │   ├── interaction-principles.md
 │   ├── component-system.md
 │   ├── visual-language.md
+│   ├── motion-easing.md
 │   ├── content-model.md
 │   ├── auth-onboarding.md
 │   ├── ai-native-research-copilot.md

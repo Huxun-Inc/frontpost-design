@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" role="img" aria-labelledby="title desc">
+  <title id="title">快速离开、末端减速的缓动曲线</title>
+  <desc id="desc">一个圆点沿着 cubic-bezier 轨迹从左下方快速移动到右上方并在终点减速。</desc>
+  <rect width="640" height="220" rx="16" fill="#f7f7f5"/>
+  <path d="M40 174 C 180 174 410 38 600 38" fill="none" stroke="#264653" stroke-width="4" stroke-linecap="round"/>
+  <path d="M40 174H600M40 174V28" fill="none" stroke="#d8e0df" stroke-width="2"/>
+  <circle r="10" cx="40" cy="174" fill="#a8dddc">
+    <animateMotion dur="1.2s" repeatCount="indefinite" path="M0 0 C 140 0 370 -136 560 -136"/>
+  </circle>
+  <text x="40" y="204" fill="#667579" font-family="system-ui,sans-serif" font-size="13">0ms · 快速离开</text>
+  <text x="600" y="25" text-anchor="end" fill="#667579" font-family="system-ui,sans-serif" font-size="13">280ms · 平滑停下</text>
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      circle animateMotion { display: none; }
+      circle { cx: 600; cy: 38; }
+    }
+  </style>
+</svg>
