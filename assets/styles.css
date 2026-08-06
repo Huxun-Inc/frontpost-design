@@ -3981,35 +3981,6 @@ img {
   line-height: 1.5;
 }
 
-.motion-timing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-sm);
-  margin-top: var(--space-lg);
-}
-
-.motion-timing-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2xs);
-  padding: var(--space-md);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius-md);
-  background: var(--surface);
-}
-
-.motion-timing-value {
-  color: var(--brand);
-  font-size: var(--font-headline-size);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.motion-timing-label {
-  color: var(--ink-muted);
-  font-size: var(--font-body-sm-size);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .motion-demo img {
     animation: none;
@@ -6657,10 +6628,6 @@ img {
 }
 
 @media (max-width: 768px) {
-  .motion-timing-grid {
-    grid-template-columns: 1fr;
-  }
-
   .container,
   .navbar-inner,
   .topbar-inner {
